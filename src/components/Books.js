@@ -6,8 +6,9 @@ function Books() {
     <>
       <div className="books-container">
         <Book title="Book1" author="amine" />
-        <Book title="Book2" author="ahmed" />
-        <Book title="Book3" author="jhon" />
+        {/* { state.forEach((book) => {
+          <Book title={book.title} author={book.author} />;
+        })} */}
       </div>
       <NewBookForm />
     </>
