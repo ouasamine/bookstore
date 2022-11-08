@@ -13,7 +13,24 @@ const removeBook = (id) => ({
   id,
 });
 
-const handleBook = (state = [], action) => {
+const initialState = [
+  {
+    id: 0,
+    title: 'First Book',
+    author: 'Author 1',
+  },
+  {
+    id: 1,
+    title: 'Second Book',
+    author: 'Author 2',
+  }, {
+    id: 2,
+    title: 'Third Book',
+    author: 'Author 3',
+  },
+];
+
+const handleBook = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK:
       return [...state, {
