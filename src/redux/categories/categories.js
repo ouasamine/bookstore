@@ -1,4 +1,4 @@
-const CHECK_STATUS = 'ADD_BOOK';
+const CHECK_STATUS = 'CHECK_STATUS';
 
 const checkStatus = () => ({ type: CHECK_STATUS });
 
