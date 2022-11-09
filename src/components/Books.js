@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
+// import { fetchBooks } from '../redux/books/books';
 import Book from './Book';
 import NewBookForm from './NewBookForm';
 
 function Books() {
-  const books = useSelector((state) => state.handleBook);
+  // const dispatch = useDispatch(fetchBooks());
+  // dispatch();
+  const books = useSelector((state) => state.handleBook.entities);
   return (
     <>
       <div className="books-container">

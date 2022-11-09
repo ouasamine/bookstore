@@ -1,49 +1,71 @@
-const ADD_BOOK = 'bookstore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
+import { createSlice } from '@reduxjs/toolkit';
 
-const addBook = (id, title, author) => ({
-  type: ADD_BOOK,
-  id,
-  title,
-  author,
-});
+// const apiBaseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/';
+// const appKey = 'iuHjMJWK2TfVCI2xE22B/';
+// const apiURL = apiBaseURL + appKey;
+// const ADD_BOOK = 'bookstore/books/ADD_BOOK';
+// const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
+// const FETCH_BOOKS = 'bookstore/books/FETCH_BOOKS/fulfilled';
 
-const removeBook = (id) => ({
-  type: REMOVE_BOOK,
-  id,
-});
+// // const addBookAPI = async (data) => {
+// //   const fetchedData = await fetch(apiURL, {
+// //     method: 'POST',
+// //     headers: {
+// //       'Content-Type': 'application/json',
+// //     },
+// //     body: JSON.stringify(data),
+// //   }).then((response) => response.json());
+// //   return fetchedData;
+// // };
 
-const initialState = [
-  {
-    id: 0,
-    title: 'First Book',
-    author: 'Author 1',
-  },
-  {
-    id: 1,
-    title: 'Second Book',
-    author: 'Author 2',
-  }, {
-    id: 2,
-    title: 'Third Book',
-    author: 'Author 3',
-  },
-];
+// const fetchBooksFromAPI = async () => {
+//   const fetchedData = await fetch(`${apiURL}books/`)
+//     .then((response) => response.json());
+//   return fetchedData;
+// };
 
-const handleBook = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK:
-      return [...state, {
-        id: action.id,
-        title: action.title,
-        author: action.author,
-      }];
-    case REMOVE_BOOK:
-      return state.filter((book) => book.id !== action.id);
-    default:
-      return state;
-  }
+// const fetchBooks = createAsyncThunk(
+//   FETCH_BOOKS,
+//   async () => {
+//     const data = await fetchBooksFromAPI();
+//     return data;
+//   },
+// );
+
+// console.log(fetchBooks());
+
+const initialState = {
+  status: 'idle',
+  entities: [
+    {
+      id: 'sdnkjqsd',
+      title: 'First Book',
+      author: 'Author 1',
+    },
+    {
+      id: 'qlkndsd',
+      title: 'Second Book',
+      author: 'Author 2',
+    }, {
+      id: 'qkdsldhuqsb',
+      title: 'Third Book',
+      author: 'Author 3',
+    },
+  ],
 };
 
-export default handleBook;
-export { addBook, removeBook };
+const handleBookSlice = createSlice({
+  name: 'handleBook',
+  initialState,
+  reducers: {
+    addBook(state, action) {
+      state.entities.push(action.payload);
+    },
+    removeBook(state, action) {
+      return state.filter((book) => book.id !== action.payload);
+    },
+  },
+});
+
+export default handleBookSlice.reducer;
+export const { addBook, removeBook } = handleBookSlice.actions;
