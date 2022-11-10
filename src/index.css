@@ -1,4 +1,225 @@
+/* stylelint-disable no-descending-specificity */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+#navbar {
+  display: flex;
+  align-items: center;
+  padding: 15px 10%;
+  background-color: #fff;
+}
+
+#navbar nav {
+  margin: 0 30px;
+}
+
+#navbar h1 {
+  color: #0290ff;
+}
+
+#navbar a {
+  margin: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+
+#navbar a:hover {
+  color: #000;
+}
+
+.books-container {
+  margin: 25px 10%;
+}
+
+.book-placeholder {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 15px;
+  margin: 30px 0;
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.book-placeholder * {
+  background-color: #fff;
+}
+
+span.category-placeholder {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5f5f5f;
+}
+
+.book-placeholder h2 {
+  margin-top: 5px;
+  margin-bottom: 1px;
+  font-family: 'Times New Roman', Times, serif;
+  color: #1f1f1f;
+}
+
+span.author-placeholder {
+  color: #0290ff;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.buttons button {
+  border: none;
+  font-weight: 500;
+  color: #4386bf;
+}
+
+.buttons button:nth-child(2) {
+  border-left: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  padding: 0 10px;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+}
+
+#addbook-form {
+  margin: 20px 10%;
+  border-top: 1px solid #c0c0c0;
+}
+
+#addbook-form h2 {
+  margin: 30px 0;
+  color: #c2c2c2;
+}
+
+#addbook-form form {
+  display: flex;
+  gap: 15px;
+}
+
+#addbook-form input {
+  padding: 5px;
+  width: 38%;
+}
+
+#addbook-form input:focus {
+  border: 1px solid #0290ff;
+  outline: 1px solid #0290ff;
+  border-radius: 4px;
+}
+
+#addbook-form button {
+  padding: 10px 25px;
+  width: 24%;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  color: #fff;
+  background-color: #0290ff;
+}
+
+#addbook-form button:hover {
+  background-color: #0290c0;
+}
+
+#addbook-form button:active {
+  background-color: #025090;
+}
+
+.book-details {
+  display: flex;
+  align-items: center;
+  gap: 55px;
+}
+
+.chart-col {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pie {
+  --w: 100px;
+
+  width: var(--w);
+  /* stylelint-disable-next-line csstree/validator */
+  aspect-ratio: 1;
+  position: relative;
+  display: inline-grid;
+  place-content: center;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.pie::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), #2c2c2c54 0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+  mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+}
+
+.chart-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-desc .perc {
+  font-size: 2.5rem;
+}
+
+.chart-desc .status {
+  font-size: 0.7rem;
+  color: #c0c0c0;
+}
+
+.chapter-col {
+  border-left: 2px solid #c0c0c0;
+  padding: 0 45px;
+}
+
+.chapter-col h3 {
+  margin: 10px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #c0c0c0;
+}
+
+.chapter-col button {
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #0290ff;
+}
+
+.chapter-col button:hover {
+  background-color: #0290c0;
+}
+
+.chapter-col button:active {
+  background-color: #025090;
 }

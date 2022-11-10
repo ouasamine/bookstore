@@ -36,21 +36,24 @@ function NewBookForm() {
     dispatch(addBook(newBook));
   };
   return (
-    <form>
-      <input
-        id="title"
-        onChange={handleInputs}
-        placeholder="Book Title"
-        value={inputs.title}
-      />
-      <input
-        id="author"
-        onChange={handleInputs}
-        placeholder="Book Author"
-        value={inputs.author}
-      />
-      <button onClick={handleSubmit} type="submit">ADD BOOK</button>
-    </form>
+    <div id="addbook-form">
+      <h2>ADD NEW BOOK</h2>
+      <form>
+        <input
+          id="title"
+          onChange={handleInputs}
+          placeholder="Book Title"
+          value={inputs.title}
+        />
+        <input
+          id="author"
+          onChange={handleInputs}
+          placeholder="Book Author"
+          value={inputs.author}
+        />
+        <button onClick={handleSubmit} type="submit">ADD BOOK</button>
+      </form>
+    </div>
   );
 }
 

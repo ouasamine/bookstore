@@ -15,17 +15,17 @@ const fetchBooks = createAsyncThunk(
 
 const addBook = createAsyncThunk(
   ADD_BOOK,
-  async (payload) => {
-    await addBookAPI(payload);
-    return payload;
+  async (Obj) => {
+    await addBookAPI(Obj);
+    return Obj;
   },
 );
 
 const removeBook = createAsyncThunk(
   REMOVE_BOOK,
-  async (payload) => {
-    await removeBookAPI(payload);
-    return payload;
+  async (id) => {
+    await removeBookAPI(id);
+    return id;
   },
 );
 
@@ -37,14 +37,6 @@ const initialState = {
 const handleBookSlice = createSlice({
   name: 'handleBook',
   initialState,
-  reducers: {
-    addBook(state, action) {
-      state.entities.push(action.payload);
-    },
-    removeBook(state, action) {
-      return state.entities.filter((book) => book.id !== action.payload);
-    },
-  },
   extraReducers: (builder) => {
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       const newBookList = [];
