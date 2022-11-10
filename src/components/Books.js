@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux';
-// import { fetchBooks } from '../redux/books/books';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../redux/books/books';
 import Book from './Book';
 import NewBookForm from './NewBookForm';
 
 function Books() {
-  // const dispatch = useDispatch(fetchBooks());
-  // dispatch();
+  const dispatch = useDispatch();
+  dispatch(fetchBooks());
   const books = useSelector((state) => state.handleBook.entities);
   return (
     <>

@@ -28,9 +28,10 @@ function NewBookForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newBook = {
-      id: uuidv4(),
+      item_id: uuidv4(),
       title: inputs.title,
       author: inputs.author,
+      category: 'none',
     };
     dispatch(addBook(newBook));
   };

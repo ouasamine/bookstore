@@ -1,38 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 
-// const apiBaseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/';
-// const appKey = 'iuHjMJWK2TfVCI2xE22B/';
-// const apiURL = apiBaseURL + appKey;
-// const ADD_BOOK = 'bookstore/books/ADD_BOOK';
-// const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
-// const FETCH_BOOKS = 'bookstore/books/FETCH_BOOKS/fulfilled';
+const apiBaseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/';
+const appKey = '5nwPDFe9MjFbkJMCzkXg/';
+const apiURL = apiBaseURL + appKey;
+const FETCH_BOOKS = 'handleBook/fetchBooks';
+const ADD_BOOK = 'handleBook/addBook';
 
-// // const addBookAPI = async (data) => {
-// //   const fetchedData = await fetch(apiURL, {
-// //     method: 'POST',
-// //     headers: {
-// //       'Content-Type': 'application/json',
-// //     },
-// //     body: JSON.stringify(data),
-// //   }).then((response) => response.json());
-// //   return fetchedData;
-// // };
+const addBookAPI = async (data) => {
+  const response = await fetch(`${apiURL}books/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify(data),
+  }).then((response) => response.text());
+  return response;
+};
 
-// const fetchBooksFromAPI = async () => {
-//   const fetchedData = await fetch(`${apiURL}books/`)
-//     .then((response) => response.json());
-//   return fetchedData;
-// };
+const fetchBooksFromAPI = async () => {
+  const fetchedData = await fetch(`${apiURL}books/`)
+    .then((response) => response.json());
+  return fetchedData;
+};
 
-// const fetchBooks = createAsyncThunk(
-//   FETCH_BOOKS,
-//   async () => {
-//     const data = await fetchBooksFromAPI();
-//     return data;
-//   },
-// );
+const fetchBooks = createAsyncThunk(
+  FETCH_BOOKS,
+  fetchBooksFromAPI,
+);
 
-// console.log(fetchBooks());
+const addBook = createAsyncThunk(
+  ADD_BOOK,
+  addBookAPI,
+);
 
 const initialState = {
   status: 'idle',
@@ -62,10 +61,26 @@ const handleBookSlice = createSlice({
       state.entities.push(action.payload);
     },
     removeBook(state, action) {
-      return state.filter((book) => book.id !== action.payload);
+      return state.entities.filter((book) => book.id !== action.payload);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchBooks.fulfilled, (state, action) => {
+      console.log(current(state).entities);
+      Object.entries(action.payload).forEach((item) => {
+        console.log(item[0], '->', item[1][0]);
+        // state.entities.push({
+        //   id: item[0],
+        //   title: item[1][0].title,
+        //   author: item[1][0].author,
+        // });
+      });
+    });
+    builder.addCase(addBook.fulfilled, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 
 export default handleBookSlice.reducer;
-export const { addBook, removeBook } = handleBookSlice.actions;
+export { fetchBooks, addBook };
