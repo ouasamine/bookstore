@@ -1,49 +1,76 @@
-const ADD_BOOK = 'bookstore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { addBookAPI, fetchBooksFromAPI, removeBookAPI } from '../../api/APICalls';
 
-const addBook = (id, title, author) => ({
-  type: ADD_BOOK,
-  id,
-  title,
-  author,
-});
+const FETCH_BOOKS = 'handleBook/fetchBooks';
+const ADD_BOOK = 'handleBook/addBook';
+const REMOVE_BOOK = 'handleBook/removeBook';
 
-const removeBook = (id) => ({
-  type: REMOVE_BOOK,
-  id,
-});
-
-const initialState = [
-  {
-    id: 0,
-    title: 'First Book',
-    author: 'Author 1',
+const fetchBooks = createAsyncThunk(
+  FETCH_BOOKS,
+  async () => {
+    const response = await fetchBooksFromAPI();
+    return response;
   },
-  {
-    id: 1,
-    title: 'Second Book',
-    author: 'Author 2',
-  }, {
-    id: 2,
-    title: 'Third Book',
-    author: 'Author 3',
-  },
-];
+);
 
-const handleBook = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK:
-      return [...state, {
-        id: action.id,
-        title: action.title,
-        author: action.author,
-      }];
-    case REMOVE_BOOK:
-      return state.filter((book) => book.id !== action.id);
-    default:
-      return state;
-  }
+const addBook = createAsyncThunk(
+  ADD_BOOK,
+  async (payload) => {
+    await addBookAPI(payload);
+    return payload;
+  },
+);
+
+const removeBook = createAsyncThunk(
+  REMOVE_BOOK,
+  async (payload) => {
+    await removeBookAPI(payload);
+    return payload;
+  },
+);
+
+const initialState = {
+  status: null,
+  entities: [],
 };
 
-export default handleBook;
-export { addBook, removeBook };
+const handleBookSlice = createSlice({
+  name: 'handleBook',
+  initialState,
+  reducers: {
+    addBook(state, action) {
+      state.entities.push(action.payload);
+    },
+    removeBook(state, action) {
+      return state.entities.filter((book) => book.id !== action.payload);
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchBooks.fulfilled, (state, action) => {
+      const newBookList = [];
+      Object.entries(action.payload).forEach((item) => {
+        newBookList.push({
+          id: item[0],
+          title: item[1][0].title,
+          author: item[1][0].author,
+        });
+      });
+      // eslint-disable-next-line no-param-reassign
+      state.entities = newBookList;
+    });
+    builder.addCase(addBook.fulfilled, (state, action) => {
+      state.entities.push({
+        id: action.payload.item_id,
+        title: action.payload.title,
+        author: action.payload.author,
+      });
+    });
+    builder.addCase(removeBook.fulfilled, (state, action) => {
+      // eslint-disable-next-line no-param-reassign
+      state.entities = state.entities.filter((book) => book.id !== action.payload);
+    });
+  },
+});
+
+export default handleBookSlice.reducer;
+export { fetchBooks, addBook, removeBook };
