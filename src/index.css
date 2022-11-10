@@ -44,6 +44,8 @@ div.books-container {
 }
 
 div.book-placeholder {
+  display: flex;
+  justify-content: space-between;
   padding: 20px 15px;
   margin: 30px 0;
   border: 1px solid #c0c0c0;
@@ -121,7 +123,7 @@ div#addbook-form input:focus {
 }
 
 div#addbook-form button {
-  padding: 5px 25px;
+  padding: 10px 25px;
   width: 24%;
   cursor: pointer;
   border: none;
@@ -129,4 +131,92 @@ div#addbook-form button {
   font-size: 0.7rem;
   color: #fff;
   background-color: #0290ff;
+}
+
+div#addbook-form button:hover {
+  background-color: #0290c0;
+}
+
+div#addbook-form button:active {
+  background-color: #025090;
+}
+
+div.book-details {
+  display: flex;
+  align-items: center;
+  gap: 55px;
+}
+
+div.chart-col {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pie {
+  --w:100px;
+  
+  width: var(--w);
+  aspect-ratio: 1;
+  position: relative;
+  display: inline-grid;
+  /* place-content: center; */
+  margin: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.pie:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  background: conic-gradient(var(--c) calc(var(--p)*1%),#2c2c2c54 0);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+          mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+
+.chart-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-desc .perc {
+  font-size: 2.5rem;
+}
+
+.chart-desc .status {
+  font-size: 0.7rem;
+  color: #c0c0c0;
+}
+
+.chapter-col {
+  border-left: 2px solid #c0c0c0;
+  padding: 0 45px;
+}
+
+.chapter-col h3 {
+  margin: 10px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #c0c0c0;
+}
+
+.chapter-col button {
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #0290ff;
+}
+
+.chapter-col button:hover {
+  background-color: #0290c0;
+}
+
+.chapter-col button:active {
+  background-color: #025090;
 }
