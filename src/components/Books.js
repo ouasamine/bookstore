@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../redux/books/books';
 import Book from './Book';
@@ -5,7 +6,9 @@ import NewBookForm from './NewBookForm';
 
 function Books() {
   const dispatch = useDispatch();
-  dispatch(fetchBooks());
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, []);
   const books = useSelector((state) => state.handleBook.entities);
   return (
     <>
