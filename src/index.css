@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 * {
   margin: 0;
   padding: 0;
@@ -13,37 +14,37 @@ body {
   background-color: #f5f5f5;
 }
 
-div#navbar {
+#navbar {
   display: flex;
   align-items: center;
   padding: 15px 10%;
   background-color: #fff;
 }
 
-div#navbar nav {
+#navbar nav {
   margin: 0 30px;
 }
 
-div#navbar h1 {
+#navbar h1 {
   color: #0290ff;
 }
 
-div#navbar a {
+#navbar a {
   margin: 10px;
   text-decoration: none;
   font-weight: 500;
   color: #5c5c5c;
 }
 
-div#navbar a:hover {
+#navbar a:hover {
   color: #000;
 }
 
-div.books-container {
+.books-container {
   margin: 25px 10%;
 }
 
-div.book-placeholder {
+.book-placeholder {
   display: flex;
   justify-content: space-between;
   padding: 20px 15px;
@@ -53,7 +54,7 @@ div.book-placeholder {
   background-color: #fff;
 }
 
-div.book-placeholder * {
+.book-placeholder * {
   background-color: #fff;
 }
 
@@ -63,7 +64,7 @@ span.category-placeholder {
   color: #5f5f5f;
 }
 
-div.book-placeholder h2 {
+.book-placeholder h2 {
   margin-top: 5px;
   margin-bottom: 1px;
   font-family: 'Times New Roman', Times, serif;
@@ -74,55 +75,55 @@ span.author-placeholder {
   color: #0290ff;
 }
 
-div.buttons {
+.buttons {
   display: flex;
   gap: 10px;
   margin-top: 15px;
 }
 
-div.buttons button {
+.buttons button {
   border: none;
   font-weight: 500;
   color: #4386bf;
 }
 
-div.buttons button:nth-child(2) {
+.buttons button:nth-child(2) {
   border-left: 1px solid #c0c0c0;
   border-right: 1px solid #c0c0c0;
   padding: 0 10px;
 }
 
-div.buttons button:hover {
+.buttons button:hover {
   cursor: pointer;
 }
 
-div#addbook-form {
+#addbook-form {
   margin: 20px 10%;
   border-top: 1px solid #c0c0c0;
 }
 
-div#addbook-form h2 {
+#addbook-form h2 {
   margin: 30px 0;
   color: #c2c2c2;
 }
 
-div#addbook-form form {
+#addbook-form form {
   display: flex;
   gap: 15px;
 }
 
-div#addbook-form input {
+#addbook-form input {
   padding: 5px;
   width: 38%;
 }
 
-div#addbook-form input:focus {
+#addbook-form input:focus {
   border: 1px solid #0290ff;
   outline: 1px solid #0290ff;
   border-radius: 4px;
 }
 
-div#addbook-form button {
+#addbook-form button {
   padding: 10px 25px;
   width: 24%;
   cursor: pointer;
@@ -133,47 +134,49 @@ div#addbook-form button {
   background-color: #0290ff;
 }
 
-div#addbook-form button:hover {
+#addbook-form button:hover {
   background-color: #0290c0;
 }
 
-div#addbook-form button:active {
+#addbook-form button:active {
   background-color: #025090;
 }
 
-div.book-details {
+.book-details {
   display: flex;
   align-items: center;
   gap: 55px;
 }
 
-div.chart-col {
+.chart-col {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .pie {
-  --w:100px;
-  
+  --w: 100px;
+
   width: var(--w);
+  /* stylelint-disable-next-line csstree/validator */
   aspect-ratio: 1;
   position: relative;
   display: inline-grid;
-  /* place-content: center; */
+  place-content: center;
   margin: 5px;
   font-size: 25px;
   font-weight: bold;
   font-family: sans-serif;
 }
-.pie:before {
+
+.pie::before {
   content: "";
   position: absolute;
   border-radius: 50%;
   inset: 0;
-  background: conic-gradient(var(--c) calc(var(--p)*1%),#2c2c2c54 0);
-  -webkit-mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
-          mask:radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), #2c2c2c54 0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+  mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
 }
 
 .chart-desc {
