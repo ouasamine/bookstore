@@ -11,10 +11,17 @@ function Book(props) {
   };
 
   return (
-    <div className="book-container">
-      <h2>{title}</h2>
-      <span>{author}</span>
-      <button onClick={handleSubmit} type="submit">Remove</button>
+    <div className="book-placeholder">
+      <div className="column">
+        <span className="category-placeholder">Category</span>
+        <h2>{title}</h2>
+        <span className="author-placeholder">{author}</span>
+        <div className="buttons">
+          <button type="submit">Comments</button>
+          <button onClick={handleSubmit} type="submit">Remove</button>
+          <button type="submit">Edit</button>
+        </div>
+      </div>
     </div>
   );
 }
