@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-Check [the live version](https://ouasamine.github.io/new-app) of this project.
+Check [the live version](https://bookstore-b254.netlify.app/) of this project.
 
 ## Getting Started
 
