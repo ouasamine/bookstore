@@ -8,7 +8,7 @@ function Books() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchBooks());
-  }, []);
+  }, [dispatch]);
   const books = useSelector((state) => state.handleBook.entities);
   return (
     <>
